@@ -1,0 +1,21 @@
+{
+  "name": "vue3-tinymce",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "tinymce": "^5.9.2",
+    "vue": "^3.2.6"
+  },
+  "peerDependencies": {
+    "vue": "^3.2.6"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.6.1",
+    "@vue/compiler-sfc": "^3.2.6",
+    "vite": "^2.5.4"
+  }
+}
