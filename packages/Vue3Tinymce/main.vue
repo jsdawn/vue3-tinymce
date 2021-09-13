@@ -1,6 +1,8 @@
 <template>
-  <textarea :id="state.id"></textarea>
+  <textarea :id="state.id" ref="textareaRef"></textarea>
   <p v-if="state.err">{{ state.err }}</p>
+
+  <button @click="addJS">添加js</button>
 </template>
 
 <script>
@@ -11,6 +13,7 @@ export default {
 
 <script setup>
 import {
+  ref,
   reactive,
   watch,
   onMounted,
@@ -20,6 +23,7 @@ import {
 } from 'vue';
 
 import {
+  uuid,
   getTinymce,
   getContent,
   setContent,
@@ -27,6 +31,8 @@ import {
   setModeDisabled,
   imageUploadHandler
 } from './utils';
+
+import { scriptLoader } from './scriptLoader';
 
 const props = defineProps({
   modelValue: String,
@@ -40,9 +46,11 @@ const emit = defineEmits(['update:modelValue', 'init', 'change']);
 
 let mounting = true;
 
+const textareaRef = ref();
+
 const state = reactive({
   editor: null,
-  id: `tinymce-${Date.now() + Math.floor(Math.random() * 1000)}`,
+  id: uuid('tinymce'),
   err: ''
 });
 
@@ -83,6 +91,15 @@ const onInited = editor => {
 };
 
 const initEditor = () => {
+  if (getTinymce() === null) {
+    state.err = 'tinymce is null';
+    return;
+  }
+
+  if (props.debug) {
+    console.warn('vue3-tinymce 进入debug模式');
+  }
+
   let setting = {
     ...props.setting,
     selector: '#' + state.id,
@@ -101,6 +118,13 @@ const initEditor = () => {
 
   getTinymce().init(setting);
   mounting = false;
+};
+
+const addJS = () => {
+  const scriptSrc =
+    props.scriptSrc ??
+    'https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js';
+  scriptLoader.load(scriptSrc, () => console.log(2));
 };
 
 watch(
@@ -130,16 +154,15 @@ defineExpose({
 });
 
 onMounted(() => {
-  if (getTinymce() === null) {
-    state.err = 'tinymce is null';
+  if (getTinymce() !== null) {
+    initEditor();
     return;
   }
 
-  if (props.debug) {
-    console.warn('vue3-tinymce 进入debug模式');
-  }
-
-  initEditor();
+  const scriptSrc =
+    props.scriptSrc ??
+    'https://cdn.bootcdn.net/ajax/libs/tinymce/5.8.2/tinymce.min.js';
+  scriptLoader.load(scriptSrc, initEditor);
 });
 
 onActivated(() => {

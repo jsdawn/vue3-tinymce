@@ -7,7 +7,7 @@
     debug
   />
 
-  <button @click="state.disabled = !state.disabled">disabled</button>
+  <button @click="state.disabled = !state.disabled">disabled2</button>
 </template>
 
 <script setup>
@@ -30,7 +30,7 @@ const state = reactive({
     nonbreaking_force_tab: true,
     language: 'zh_CN',
     language_url: '/tinymce/langs/zh_CN.js',
-    content_style: 'body{font-size: 16px}'
+    content_style: 'body{font-size: 14px}'
     // images_upload_url: ''
     // automatic_uploads: true,
     // custom_images_upload: true,

@@ -2,10 +2,13 @@
  * tinymce 工具函数
  * 无状态函数、可移植
  */
+export const uuid = prefix => {
+  return prefix + '_' + (Date.now() + Math.floor(Math.random() * 1000000));
+};
 
 export const getTinymce = () => {
-  const global = typeof window !== 'undefined' ? window : global;
-  return global && global.tinymce ? global.tinymce : null;
+  const root = typeof window !== 'undefined' ? window : global;
+  return root && 'tinymce' in root ? root.tinymce : null;
 };
 
 export function getContent(editor) {
@@ -21,9 +24,9 @@ export function setContent(val, editor) {
 export function resetContent(val, editor) {
   if (!editor) return;
   if (!!editor.resetContent) return editor.resetContent(val);
-
+  // 若无 reset fun，则手动 reset
   editor.setContent(val);
-  editor.setDirty(false);
+  editor.setDirty(false); // 恢复初始状态
   editor.undoManager.clear();
 }
 

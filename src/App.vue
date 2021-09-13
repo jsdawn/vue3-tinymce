@@ -15,11 +15,15 @@
 // https://github.com/vuejs/rfcs/blob/master/active-rfcs/0040-script-setup.md
 </script>
 
-<style scoped>
+<style>
 @import './style/normalize.scss';
 
+#app {
+  padding: 0 20px;
+}
+
 .ui-face {
-  padding: 40px 20px;
+  padding: 40px 0;
 }
 
 .ui-face h1 {
