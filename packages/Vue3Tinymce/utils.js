@@ -1,7 +1,17 @@
+/**
+ * tinymce 工具函数
+ * 无状态函数、可移植
+ */
+
 export const getTinymce = () => {
   const global = typeof window !== 'undefined' ? window : global;
   return global && global.tinymce ? global.tinymce : null;
 };
+
+export function getContent(editor) {
+  if (!editor) return '';
+  return editor.getContent();
+}
 
 export function setContent(val, editor) {
   if (!editor) return;

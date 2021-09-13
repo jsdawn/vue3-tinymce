@@ -17,7 +17,8 @@
   },
   "dependencies": {
     "tinymce": "^5.9.2",
-    "vue": "^3.2.6"
+    "vue": "^3.2.6",
+    "vue-router": "4"
   },
   "peerDependencies": {
     "vue": "^3.2.6"

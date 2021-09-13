@@ -21,6 +21,7 @@ import {
 
 import {
   getTinymce,
+  getContent,
   setContent,
   resetContent,
   setModeDisabled,
@@ -41,28 +42,23 @@ let mounting = true;
 
 const state = reactive({
   editor: null,
-  id: `vue3-tinymce-${Date.now() + Math.floor(Math.random() * 1000)}`,
-  err: '',
-  status: 'INIT' // INIT INPUT
+  id: `tinymce-${Date.now() + Math.floor(Math.random() * 1000)}`,
+  err: ''
 });
 
 const getModelValue = () => String(props.modelValue ?? '');
 
 const updateValue = val => emit('update:modelValue', val);
 
-const setHandleStatus = val => (state.status = val);
-
 const printLog = (e, val, oldVal) => {
   if (!props.debug) return;
-  console.log(
-    `来自：${e.type} | 状态：${state.status} \n ${val} \n ${oldVal || '--'}`
-  );
+  console.log(`来自：${e.type} | \n ${val} \n ${oldVal || '--'}`);
 };
 
 const onChanged = (e, editor) => {
   if (!editor) editor = state.editor;
 
-  const content = editor.getContent();
+  const content = getContent(editor);
   printLog(e, content);
 
   updateValue(content);
@@ -78,17 +74,8 @@ const onInited = editor => {
     setModeDisabled(editor);
   }
 
-  //只在编辑器中打字才会触发, 录入文字时标记为`INPUT`状态
-  editor.on('keyup input', () => {
-    setHandleStatus('INPUT');
-  });
-
-  editor.on('Blur', e => {
-    setHandleStatus('INIT');
-    printLog(e, editor.getContent());
-  });
-
-  editor.on('input keyup Change Undo Redo ExecCommand NodeChange', e => {
+  // change input undo redo keyup
+  editor.on('change input undo redo', e => {
     onChanged(e, editor);
   });
 
@@ -119,10 +106,10 @@ const initEditor = () => {
 watch(
   () => props.modelValue,
   (val, oldVal) => {
-    printLog({ type: 'propsChanged' }, val, oldVal);
-
-    if (state.status === 'INPUT' || oldVal === val) return;
     if (!state.editor || !state.editor.initialized) return;
+    if (oldVal === val || val === getContent(state.editor)) return;
+
+    printLog({ type: 'propsChanged to setContent' }, val, oldVal);
 
     if (val === null) return resetContent('', state.editor);
     setContent(getModelValue(), state.editor);
@@ -138,6 +125,7 @@ watch(
 );
 
 defineExpose({
+  id: state.id,
   editor: state.editor
 });
 
