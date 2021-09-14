@@ -9,7 +9,7 @@ const scriptLoaderCreator = () => {
   // 新建标签 script
   const creactScriptElm = (url, callback) => {
     const scriptElm = document.createElement('script');
-    scriptElm.id = uuid('v-tiny');
+    scriptElm.id = uuid('tiny-script');
     scriptElm.type = 'application/javascript';
     scriptElm.src = url;
     scriptElm.referrerPolicy = 'origin';

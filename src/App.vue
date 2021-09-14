@@ -16,7 +16,7 @@
 </script>
 
 <style>
-@import './style/normalize.scss';
+@import './style/normalize.css';
 
 #app {
   padding: 0 20px;

@@ -26,6 +26,7 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.6.1",
     "@vue/compiler-sfc": "^3.2.6",
+    "sass": "^1.40.1",
     "vite": "^2.5.4"
   }
 }

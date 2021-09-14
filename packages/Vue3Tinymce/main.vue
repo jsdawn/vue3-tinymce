@@ -1,8 +1,6 @@
 <template>
-  <textarea :id="state.id" ref="textareaRef"></textarea>
+  <div :id="state.id" class="tiny-textarea"></div>
   <p v-if="state.err">{{ state.err }}</p>
-
-  <button @click="addJS">添加js</button>
 </template>
 
 <script>
@@ -13,7 +11,6 @@ export default {
 
 <script setup>
 import {
-  ref,
   reactive,
   watch,
   onMounted,
@@ -36,17 +33,16 @@ import { scriptLoader } from './scriptLoader';
 
 const props = defineProps({
   modelValue: String,
-  setting: Object,
+  setting: { type: Object, default: () => ({}) },
   setup: Function,
   disabled: Boolean,
+  scriptSrc: String,
   debug: Boolean
 });
 
 const emit = defineEmits(['update:modelValue', 'init', 'change']);
 
 let mounting = true;
-
-const textareaRef = ref();
 
 const state = reactive({
   editor: null,
@@ -118,13 +114,6 @@ const initEditor = () => {
 
   getTinymce().init(setting);
   mounting = false;
-};
-
-const addJS = () => {
-  const scriptSrc =
-    props.scriptSrc ??
-    'https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js';
-  scriptLoader.load(scriptSrc, () => console.log(2));
 };
 
 watch(
