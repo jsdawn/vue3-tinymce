@@ -53,10 +53,9 @@ export function imageUploadHandler(
   let xhr, formData;
 
   xhr = new XMLHttpRequest();
-
   // 是否开启 withCredentials <= images_upload_credentials
   xhr.withCredentials = !!images_upload_credentials;
-
+  // images_upload_url
   xhr.open('POST', images_upload_url || '');
 
   xhr.upload.onprogress = function (e) {
@@ -64,19 +63,16 @@ export function imageUploadHandler(
   };
 
   xhr.onload = function () {
-    let json;
-
     if (xhr.status === 403) {
-      failure('HTTP Error (custom): ' + xhr.status, { remove: true });
+      failure('HTTP Error (custom): status ' + xhr.status, { remove: true });
       return;
     }
-
     if (xhr.status < 200 || xhr.status >= 300) {
-      failure('HTTP Error (custom): ' + xhr.status);
+      failure('HTTP Error (custom): status ' + xhr.status);
       return;
     }
 
-    json = JSON.parse(xhr.responseText);
+    let json = JSON.parse(xhr.responseText);
 
     if (!json) {
       failure('Invalid JSON (custom): ' + xhr.responseText);

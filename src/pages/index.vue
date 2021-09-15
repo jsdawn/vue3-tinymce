@@ -2,8 +2,6 @@
   <router-link to="/example"
     >前往示例1 [ 动态加载资源 | 只读状态切换 ]</router-link
   >
-  <br />
-  <router-link to="/example2">前往示例2 [ 推荐选项配置 ]</router-link>
 </template>
 
 <script setup>
