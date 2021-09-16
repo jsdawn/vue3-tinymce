@@ -21,7 +21,8 @@
     "build": "vite build",
     "serve": "vite preview",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "docker:build": "vuepress build docs && chmod +x ./docker-build.sh && ./docker-build.sh"
   },
   "repository": {
     "type": "git",

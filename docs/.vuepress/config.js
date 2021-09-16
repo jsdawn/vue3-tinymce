@@ -17,7 +17,7 @@ module.exports = {
     editLink: false,
     navbar: [
       { text: '指南', link: '/' },
-      { text: '使用示例', link: '/example.md' }
+      { text: '使用示例', link: '/example' }
     ],
     lastUpdated: false,
     contributors: false,

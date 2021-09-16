@@ -52,3 +52,4 @@ const state = reactive({
 
 ## 使用示例
 
+点击前往 [使用示例](./example.md)

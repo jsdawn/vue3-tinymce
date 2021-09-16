@@ -1,11 +1,11 @@
 <template>
   <section class="section">
-    <h3>默认配置</h3>
+    <h3>默认设置</h3>
     <vue3-tinymce v-model="stateDefault.content" />
   </section>
 
   <section class="section">
-    <h3>经典配置</h3>
+    <h3>经典设置</h3>
 
     <vue3-tinymce
       v-model="stateClassic.content"
@@ -14,7 +14,7 @@
   </section>
 
   <section class="section">
-    <h3>类似掘金配置</h3>
+    <h3>类似掘金设置</h3>
     <vue3-tinymce
       v-model="stateJuejin.content"
       :setting="stateJuejin.setting"
@@ -27,7 +27,7 @@ import { reactive } from 'vue';
 import Vue3Tinymce from '../../packages/Vue3Tinymce';
 
 const stateDefault = reactive({
-  content: 'tinymce 默认的编辑器配置，不需要传参额外的setting ...'
+  content: 'tinymce 默认的编辑器设置，不需要传参额外的setting ...'
 });
 
 const stateClassic = reactive({
@@ -45,7 +45,7 @@ const stateClassic = reactive({
     default_link_target: '_blank',
     link_title: false,
     nonbreaking_force_tab: true,
-    // 配置中文语言
+    // 设置中文语言
     language: 'zh_CN',
     language_url: '/tinymce/langs/zh_CN.js',
     content_style: 'body{font-size: 14px}'
