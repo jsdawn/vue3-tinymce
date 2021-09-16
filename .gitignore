@@ -6,4 +6,3 @@ dist-ssr
 *.local
 .temp
 .cache
-docker-build.sh
