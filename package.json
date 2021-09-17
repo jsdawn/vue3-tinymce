@@ -1,15 +1,15 @@
 {
   "name": "@jsdawn/vue3-tinymce",
-  "version": "1.0.2",
+  "version": "1.1.6",
   "description": "tinymce editor Components built on Vue3 and Vite",
   "author": "jsdawn",
   "license": "MIT",
-  "main": "./dist/vue3-tinymce.es.js",
-  "module": "./dist/vue3-tinymce.umd.js",
+  "main": "./dist/vue3-tinymce.umd.js",
+  "module": "./dist/vue3-tinymce.es.js",
   "exports": {
     ".": {
-      "import": "./dist/vue3-tinymce.es.js",
-      "require": "./dist/vue3-tinymce.umd.js"
+      "require": "./dist/vue3-tinymce.umd.js",
+      "import": "./dist/vue3-tinymce.es.js"
     }
   },
   "files": [

@@ -4,7 +4,7 @@
 
 `language` - 语言 code， `language_url` - 语言包路径。
 
-vue 脚手架项目可前往官网 [下载语言包](https://www.tiny.cloud/get-tiny/language-packages/) 放在 `pulish/tinymce/langs` 中，也可使用该组件语言包 cdn `https://unpkg.com/@jsdawn/vue3-tinymce@1.0.2/dist/tinymce/langs/zh_CN.js`
+vue 脚手架项目可前往官网 [下载语言包](https://www.tiny.cloud/get-tiny/language-packages/) 放在 `pulish/tinymce/langs` 中，也可使用该组件语言包 cdn `https://unpkg.com/@jsdawn/vue3-tinymce@1.1.6/dist/tinymce/langs/zh_CN.js`
 
 ```js
 const setting = {
@@ -31,13 +31,17 @@ const classic_setting = {
   fontsize_formats: '12px 14px 16px 18px',
   default_link_target: '_blank',
   link_title: false,
-  nonbreaking_force_tab: true
+  nonbreaking_force_tab: true,
+  // 以中文简体为例
+  language: 'zh_CN',
+  language_url:
+    'https://unpkg.com/@jsdawn/vue3-tinymce@1.1.6/dist/tinymce/langs/zh_CN.js'
 };
 ```
 
-<iframe height="300" style="width: 100%;" scrolling="no" title="" src="https://codepen.io/jsdawn/embed/BaZmXYO?default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+<iframe height="300" style="width: 100%;" scrolling="no" title="vue3-tinymce-classic" src="https://codepen.io/jsdawn/embed/BaZmXYO?default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href="https://codepen.io/jsdawn/pen/BaZmXYO">
-  </a> by 青山依旧 (<a href="https://codepen.io/jsdawn">@jsdawn</a>)
+  vue3-tinymce-classic</a> by 青山依旧 (<a href="https://codepen.io/jsdawn">@jsdawn</a>)
   on <a href="https://codepen.io">CodePen</a>.
 </iframe>
 
