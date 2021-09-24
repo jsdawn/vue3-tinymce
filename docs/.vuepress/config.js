@@ -1,5 +1,7 @@
 const path = require('path');
 
+const basePath = '/vue3-tinymce/';
+
 module.exports = {
   lang: 'zh-CN',
   title: 'vue3-tinymce',
@@ -15,12 +17,10 @@ module.exports = {
     ]
   ],
 
-  alias: {
-    '@assets': path.resolve(__dirname, '../assets')
-  },
+  base: basePath,
+  dest: path.resolve(__dirname, './gitee-pages'),
 
   themeConfig: {
-    home: '/',
     logo: '/images/v_tiny_logo.png',
     repo: 'https://gitee.com/jsdawn/vue3-tinymce.git',
     editLink: false,
@@ -30,7 +30,6 @@ module.exports = {
       { text: '青山依旧', link: 'http://www.qscoding.com/' }
     ],
     lastUpdated: false,
-    contributors: false,
-    toggleSidebar: 'ddd'
+    contributors: false
   }
 };
