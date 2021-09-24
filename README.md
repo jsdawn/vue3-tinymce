@@ -2,8 +2,8 @@
 
 vue3-tinymce 是基于 `vue@3.x` + `tinymce@5.8.x` 封装的富文本编辑器。
 
-[![vue3-tinymce](docs/assets/images/svg_vue3_tinymce.svg)](https://gitee.com/jsdawn/vue3-tinymce.git)
-[![tinymce](docs/assets/images/svg_tinymce.svg)](https://www.tiny.cloud/docs/)
+[![npm](https://img.shields.io/npm/dt/@jsdawn/vue3-tinymce?label=vue3-tinymce&logo=npm)](https://www.npmjs.com/package/@jsdawn/vue3-tinymce)
+[![tinymce](https://img.shields.io/badge/tinymce-%5E5.8.2-blue)](https://www.tiny.cloud/docs/)
 
 ## 为什么
 

@@ -2,8 +2,8 @@
 
 vue3-tinymce 是基于 `vue@3.x` + `tinymce@5.8.x` 封装的富文本编辑器。
 
-[![vue3-tinymce](./assets/images/svg_vue3_tinymce.svg)](https://gitee.com/jsdawn/vue3-tinymce.git)
-[![tinymce](./assets/images/svg_tinymce.svg)](https://www.tiny.cloud/docs/)
+[![npm](https://img.shields.io/npm/dt/@jsdawn/vue3-tinymce?label=vue3-tinymce&logo=npm)](https://www.npmjs.com/package/@jsdawn/vue3-tinymce)
+[![tinymce](https://img.shields.io/badge/tinymce-%5E5.8.2-blue)](https://www.tiny.cloud/docs/)
 
 ## 为什么
 
@@ -80,8 +80,8 @@ const state = reactive({
 | `setting`    | `Object`   | 设置项，延用官方 [tinymce 设置](https://www.tiny.cloud/docs/configure/integration-and-setup/) |
 | `setup`      | `Function` | 编辑器设置时的回调，回调参数 editor 实例，在此将编辑器事件添加到 TinyMCE 中                   |
 | `script-src` | `Function` | 自定义 `tinymce` 静态资源，支持绝对路径和网络地址。内置按需加载 `tinymce@5.8.2`               |
-| `@change`    | `Function` | 编辑器监听到 `change input undo redo` 时触发，回调参数为编辑器 content                |
-| `@init`      | `Function` | 编辑器初始化完成后触发，回调参数 `editor` 实例                                        |
+| `@change`    | `Function` | 编辑器监听到 `change input undo redo` 时触发，回调参数为编辑器 content                        |
+| `@init`      | `Function` | 编辑器初始化完成后触发，回调参数 `editor` 实例                                                |
 
 ## 使用示例
 
