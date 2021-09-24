@@ -7,7 +7,7 @@ module.exports = {
   title: 'vue3-tinymce',
   description: 'vue3-tinymce 是基于 vue@3.x + tinymce@5.8.x 封装的富文本编辑器',
   head: [
-    ['link', { rel: 'icon', href: '/images/v_tiny_logo.png' }],
+    ['link', { rel: 'icon', href: basePath + 'images/v_tiny_logo.png' }],
     [
       'meta',
       {
