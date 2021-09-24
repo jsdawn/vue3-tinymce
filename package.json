@@ -22,6 +22,7 @@
     "serve": "vite preview",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
+    "docs:giteePages": "vuepress build docs --config docs/.vuepress/config_gitee.js",
     "docker:build": "vuepress build docs && chmod +x ./docker-build.sh && ./docker-build.sh"
   },
   "repository": {
