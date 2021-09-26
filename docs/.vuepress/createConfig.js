@@ -1,11 +1,16 @@
 const path = require('path');
 
-const createConfig = (basePath, opts) => ({
+const defaultOpts = {
+  base: '/',
+  dest: './dist'
+};
+
+const createConfig = ({ base, dest } = defaultOpts) => ({
   lang: 'zh-CN',
   title: 'vue3-tinymce',
   description: 'vue3-tinymce 是基于 vue@3.x + tinymce@5.8.x 封装的富文本编辑器',
   head: [
-    ['link', { rel: 'icon', href: basePath + 'images/v_tiny_logo.png' }],
+    ['link', { rel: 'icon', href: base + 'images/v_tiny_logo.png' }],
     [
       'meta',
       {
@@ -15,8 +20,8 @@ const createConfig = (basePath, opts) => ({
     ]
   ],
 
-  base: basePath,
-  dest: path.resolve(__dirname, './dist'),
+  base: base,
+  dest: path.resolve(__dirname, dest),
 
   themeConfig: {
     logo: '/images/v_tiny_logo.png',
@@ -29,8 +34,7 @@ const createConfig = (basePath, opts) => ({
     ],
     lastUpdated: false,
     contributors: false
-  },
-  ...opts
+  }
 });
 
 module.exports = { createConfig };
