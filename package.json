@@ -22,7 +22,7 @@
     "serve": "vite preview",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
-    "docs:giteePages": "vuepress build docs --config docs/.vuepress/config_gitee.js",
+    "docs:build.gitee": "cross-env BUILD_ENV=/vue3-tinymce/ vuepress build docs",
     "docker:build": "vuepress build docs && chmod +x ./docker-build.sh && ./docker-build.sh"
   },
   "repository": {
@@ -40,6 +40,7 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.6.1",
     "@vue/compiler-sfc": "^3.2.6",
+    "cross-env": "^7.0.3",
     "sass": "^1.40.1",
     "sass-loader": "^12.1.0",
     "vite": "^2.5.4",
