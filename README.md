@@ -86,4 +86,4 @@ const state = reactive({
 
 ## 使用示例
 
-点击前往 [使用示例](http://tinymce.qscoding.com/)
+点击前往 [使用示例](http://jsdawn.gitee.io/vue3-tinymce/)
