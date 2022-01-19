@@ -7,18 +7,12 @@
   <section class="section">
     <h3>经典设置</h3>
 
-    <vue3-tinymce
-      v-model="stateClassic.content"
-      :setting="stateClassic.setting"
-    />
+    <vue3-tinymce v-model="stateClassic.content" :setting="stateClassic.setting" />
   </section>
 
   <section class="section">
     <h3>类似掘金设置</h3>
-    <vue3-tinymce
-      v-model="stateJuejin.content"
-      :setting="stateJuejin.setting"
-    />
+    <vue3-tinymce v-model="stateJuejin.content" :setting="stateJuejin.setting" />
   </section>
 </template>
 
@@ -27,7 +21,7 @@ import { reactive } from 'vue';
 import Vue3Tinymce from '../../packages/Vue3Tinymce';
 
 const stateDefault = reactive({
-  content: 'tinymce 默认的编辑器设置，不需要传参额外的setting ...'
+  content: 'tinymce 默认的编辑器设置，不需要传参额外的setting ...',
 });
 
 const stateClassic = reactive({
@@ -48,16 +42,15 @@ const stateClassic = reactive({
     // 设置中文语言
     language: 'zh_CN',
     language_url: '/tinymce/langs/zh_CN.js',
-    content_style: 'body{font-size: 14px}'
-  }
+    content_style: 'body{font-size: 14px}',
+  },
 });
 
 const stateJuejin = reactive({
   content: `<p>掘金的富文本编辑器比较简洁 ...</p> <p>开启自定义图片上传模式，点击工具栏插入图片按钮，弹框中会增加 Upload 功能选项</p>`,
   setting: {
     menubar: false,
-    toolbar:
-      'bold italic underline h1 h2 blockquote codesample numlist bullist link image | removeformat fullscreen',
+    toolbar: 'bold italic underline h1 h2 blockquote codesample numlist bullist link image | removeformat fullscreen',
     plugins: 'codesample link image table lists fullscreen',
     toolbar_mode: 'sliding',
     nonbreaking_force_tab: true,
@@ -66,9 +59,10 @@ const stateJuejin = reactive({
     // 自定义 图片上传模式
     custom_images_upload: true,
     images_upload_url: 'your_upload_api_url...',
-    custom_images_upload_callback: res => res.url,
-    custom_images_upload_param: { id: 'xxxx01', age: 18 }
-  }
+    custom_images_upload_callback: (res) => res.url,
+    custom_images_upload_header: { 'X-Token': 'xxxx' },
+    custom_images_upload_param: { id: 'xxxx01', age: 18 },
+  },
 });
 </script>
 

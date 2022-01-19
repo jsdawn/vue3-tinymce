@@ -2,7 +2,7 @@
  * tinymce 工具函数
  * 无状态函数、可移植
  */
-export const uuid = prefix => {
+export const uuid = (prefix) => {
   return prefix + '_' + (Date.now() + Math.floor(Math.random() * 1000000));
 };
 
@@ -36,18 +36,13 @@ export function setModeDisabled(editor, disabled = true) {
 }
 
 // custom images upload handler
-export function imageUploadHandler(
-  setting,
-  blobInfo,
-  success,
-  failure,
-  progress
-) {
+export function imageUploadHandler(setting, blobInfo, success, failure, progress) {
   let {
     images_upload_url,
     images_upload_credentials,
+    custom_images_upload_header,
     custom_images_upload_param,
-    custom_images_upload_callback
+    custom_images_upload_callback,
   } = setting || {};
 
   let xhr, formData;
@@ -57,6 +52,12 @@ export function imageUploadHandler(
   xhr.withCredentials = !!images_upload_credentials;
   // images_upload_url
   xhr.open('POST', images_upload_url || '');
+
+  if (custom_images_upload_header) {
+    Object.keys(custom_images_upload_header).forEach((key) => {
+      xhr.setRequestHeader(key, custom_images_upload_header[key]);
+    });
+  }
 
   xhr.upload.onprogress = function (e) {
     progress((e.loaded / e.total) * 100);
@@ -81,9 +82,7 @@ export function imageUploadHandler(
 
     // 处理返回图片地址 custom_images_upload_callback
     let backImgUrl =
-      typeof custom_images_upload_callback === 'function'
-        ? custom_images_upload_callback(json)
-        : json.location;
+      typeof custom_images_upload_callback === 'function' ? custom_images_upload_callback(json) : json.location;
 
     if (!backImgUrl) {
       failure('Failed Path (custom): location image path is error/empty');
@@ -94,9 +93,7 @@ export function imageUploadHandler(
   };
 
   xhr.onerror = function () {
-    failure(
-      'Image upload failed due to a XHR Transport error. Code: ' + xhr.status
-    );
+    failure('Image upload failed due to a XHR Transport error. Code: ' + xhr.status);
   };
 
   formData = new FormData();
@@ -104,7 +101,7 @@ export function imageUploadHandler(
 
   // 额外的请求参数 custom_images_upload_param
   if (custom_images_upload_param) {
-    Object.keys(custom_images_upload_param).forEach(key => {
+    Object.keys(custom_images_upload_param).forEach((key) => {
       formData.append(key, custom_images_upload_param[key]);
     });
   }

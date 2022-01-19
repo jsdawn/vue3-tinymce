@@ -1,6 +1,6 @@
 {
   "name": "@jsdawn/vue3-tinymce",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "tinymce editor Components built on Vue3 and Vite",
   "author": "jsdawn",
   "license": "MIT",
@@ -30,7 +30,6 @@
     "url": "https://gitee.com/jsdawn/vue3-tinymce.git"
   },
   "dependencies": {
-    "tinymce": "^5.9.2",
     "vue": "^3.2.6",
     "vue-router": "4"
   },
