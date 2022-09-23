@@ -87,6 +87,10 @@ function imageUploadHandler(setting, blobInfo, progress) {
     xhr.send(formData);
   });
 }
+function getContentStyle(style) {
+  const defaultStyle = `body{font-size: 14px;} img{padding: 0 2px;} `;
+  return defaultStyle + (style ? style : "");
+}
 const scriptLoaderCreator = () => {
   let state = {
     status: {},
@@ -197,6 +201,7 @@ const _sfc_main = /* @__PURE__ */ Object.assign(__default__, {
       emit("init", editor);
     };
     const initEditor = () => {
+      var _a;
       if (getTinymce() === null) {
         state.err = "tinymce is null";
         return;
@@ -207,6 +212,7 @@ const _sfc_main = /* @__PURE__ */ Object.assign(__default__, {
       let setting = {
         ...props.setting,
         selector: "#" + state.id,
+        content_style: getContentStyle((_a = props.setting) == null ? void 0 : _a.content_style),
         setup: (editor) => {
           if (props.setup)
             props.setup(editor);

@@ -65,8 +65,7 @@ const stateJuejin = reactive({
     default_link_target: '_blank',
     // 自定义 图片上传模式
     custom_images_upload: true,
-    images_upload_url:
-      'https://api.diggmind.com/api/admin/v1next/bizcp/main/upload',
+    images_upload_url:'your/upload/apiurl',
     custom_images_upload_callback: (res) => res.url,
     custom_images_upload_header: { 'X-Token': 'xxxx' },
     custom_images_upload_param: { id: 'xxxx01', age: 18 },

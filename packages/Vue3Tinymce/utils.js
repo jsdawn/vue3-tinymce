@@ -117,3 +117,8 @@ export function imageUploadHandler(setting, blobInfo, progress) {
     xhr.send(formData);
   });
 }
+
+export function getContentStyle(style) {
+  const defaultStyle = `body{font-size: 14px;} img{padding: 0 2px;} `;
+  return defaultStyle + (style ? style : '');
+}

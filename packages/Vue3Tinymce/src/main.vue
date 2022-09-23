@@ -26,6 +26,7 @@ import {
   setContent,
   resetContent,
   setModeDisabled,
+  getContentStyle,
   imageUploadHandler,
 } from '../utils';
 
@@ -99,6 +100,7 @@ const initEditor = () => {
   let setting = {
     ...props.setting,
     selector: '#' + state.id,
+    content_style: getContentStyle(props.setting?.content_style),
     setup: (editor) => {
       if (props.setup) props.setup(editor);
       editor.on('init', () => onInited(editor));
