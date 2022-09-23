@@ -36,75 +36,84 @@ export function setModeDisabled(editor, disabled = true) {
 }
 
 // custom images upload handler
-export function imageUploadHandler(setting, blobInfo, success, failure, progress) {
-  let {
-    images_upload_url,
-    images_upload_credentials,
-    custom_images_upload_header,
-    custom_images_upload_param,
-    custom_images_upload_callback,
-  } = setting || {};
+// tinymce 6.x return Promise
+export function imageUploadHandler(setting, blobInfo, progress) {
+  return new Promise((resolve, reject) => {
+    let {
+      images_upload_url,
+      images_upload_credentials,
+      custom_images_upload_header,
+      custom_images_upload_param,
+      custom_images_upload_callback,
+    } = setting || {};
 
-  let xhr, formData;
+    let xhr, formData;
 
-  xhr = new XMLHttpRequest();
-  // 是否开启 withCredentials <= images_upload_credentials
-  xhr.withCredentials = !!images_upload_credentials;
-  // images_upload_url
-  xhr.open('POST', images_upload_url || '');
+    xhr = new XMLHttpRequest();
+    // 是否开启 withCredentials <= images_upload_credentials
+    xhr.withCredentials = !!images_upload_credentials;
+    // images_upload_url
+    xhr.open('POST', images_upload_url || '');
 
-  if (custom_images_upload_header) {
-    Object.keys(custom_images_upload_header).forEach((key) => {
-      xhr.setRequestHeader(key, custom_images_upload_header[key]);
-    });
-  }
-
-  xhr.upload.onprogress = function (e) {
-    progress((e.loaded / e.total) * 100);
-  };
-
-  xhr.onload = function () {
-    if (xhr.status === 403) {
-      failure('HTTP Error (custom): status ' + xhr.status, { remove: true });
-      return;
-    }
-    if (xhr.status < 200 || xhr.status >= 300) {
-      failure('HTTP Error (custom): status ' + xhr.status);
-      return;
+    if (custom_images_upload_header) {
+      Object.keys(custom_images_upload_header).forEach((key) => {
+        xhr.setRequestHeader(key, custom_images_upload_header[key]);
+      });
     }
 
-    let json = JSON.parse(xhr.responseText);
+    xhr.upload.onprogress = function (e) {
+      progress((e.loaded / e.total) * 100);
+    };
 
-    if (!json) {
-      failure('Invalid JSON (custom): ' + xhr.responseText);
-      return;
+    xhr.onload = function () {
+      if (xhr.status === 403) {
+        reject({ message: 'HTTP Error: ' + xhr.status, remove: true });
+        return;
+      }
+
+      if (xhr.status < 200 || xhr.status >= 300) {
+        reject('HTTP Error: ' + xhr.status);
+        return;
+      }
+
+      let json = JSON.parse(xhr.responseText);
+
+      if (!json) {
+        reject('Invalid JSON: ' + xhr.responseText);
+        return;
+      }
+
+      // 处理返回图片地址 custom_images_upload_callback
+      // 默认 json.location
+      let backImgUrl =
+        typeof custom_images_upload_callback === 'function'
+          ? custom_images_upload_callback(json)
+          : json.location;
+
+      if (!backImgUrl) {
+        reject('Failed Path: location image path is error/empty');
+        return;
+      }
+
+      resolve(backImgUrl);
+    };
+
+    xhr.onerror = function () {
+      reject(
+        'Image upload failed due to a XHR Transport error. Code: ' + xhr.status
+      );
+    };
+
+    formData = new FormData();
+    formData.append('file', blobInfo.blob(), blobInfo.filename());
+
+    // 额外的请求参数 custom_images_upload_param
+    if (custom_images_upload_param) {
+      Object.keys(custom_images_upload_param).forEach((key) => {
+        formData.append(key, custom_images_upload_param[key]);
+      });
     }
 
-    // 处理返回图片地址 custom_images_upload_callback
-    let backImgUrl =
-      typeof custom_images_upload_callback === 'function' ? custom_images_upload_callback(json) : json.location;
-
-    if (!backImgUrl) {
-      failure('Failed Path (custom): location image path is error/empty');
-      return;
-    }
-
-    success(backImgUrl);
-  };
-
-  xhr.onerror = function () {
-    failure('Image upload failed due to a XHR Transport error. Code: ' + xhr.status);
-  };
-
-  formData = new FormData();
-  formData.append('file', blobInfo.blob(), blobInfo.filename());
-
-  // 额外的请求参数 custom_images_upload_param
-  if (custom_images_upload_param) {
-    Object.keys(custom_images_upload_param).forEach((key) => {
-      formData.append(key, custom_images_upload_param[key]);
-    });
-  }
-
-  xhr.send(formData);
+    xhr.send(formData);
+  });
 }

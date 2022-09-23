@@ -1,6 +1,6 @@
 {
   "name": "@jsdawn/vue3-tinymce",
-  "version": "1.1.7",
+  "version": "2.0.1",
   "description": "tinymce editor Components built on Vue3 and Vite",
   "author": "jsdawn",
   "license": "MIT",
@@ -19,11 +19,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview",
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs",
-    "docs:build.gitee": "cross-env BUILD_ENV=/vue3-tinymce/ vuepress build docs",
-    "docker:build": "vuepress build docs && chmod +x ./docker-build.sh && ./docker-build.sh"
+    "serve": "vite preview"
   },
   "repository": {
     "type": "git",

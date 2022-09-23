@@ -5,7 +5,7 @@
 
 <script>
 export default {
-  name: 'Vue3Tinymce'
+  name: 'Vue3Tinymce',
 };
 </script>
 
@@ -16,7 +16,7 @@ import {
   onMounted,
   onBeforeUnmount,
   onActivated,
-  onDeactivated
+  onDeactivated,
 } from 'vue';
 
 import {
@@ -26,10 +26,10 @@ import {
   setContent,
   resetContent,
   setModeDisabled,
-  imageUploadHandler
-} from './utils';
+  imageUploadHandler,
+} from '../utils';
 
-import { scriptLoader } from './scriptLoader';
+import { scriptLoader } from '../scriptLoader';
 
 const props = defineProps({
   modelValue: String,
@@ -37,7 +37,7 @@ const props = defineProps({
   setup: Function,
   disabled: Boolean,
   scriptSrc: String,
-  debug: Boolean
+  debug: Boolean,
 });
 
 const emit = defineEmits(['update:modelValue', 'init', 'change']);
@@ -47,12 +47,12 @@ let mounting = true;
 const state = reactive({
   editor: null,
   id: uuid('tinymce'),
-  err: ''
+  err: '',
 });
 
 const getModelValue = () => String(props.modelValue ?? '');
 
-const updateValue = val => emit('update:modelValue', val);
+const updateValue = (val) => emit('update:modelValue', val);
 
 const printLog = (e, val, oldVal) => {
   if (!props.debug) return;
@@ -69,7 +69,7 @@ const onChanged = (e, editor) => {
   emit('change', content);
 };
 
-const onInited = editor => {
+const onInited = (editor) => {
   state.editor = editor;
 
   setContent(getModelValue(), editor);
@@ -79,7 +79,7 @@ const onInited = editor => {
   }
 
   // change input undo redo keyup
-  editor.on('change input undo redo', e => {
+  editor.on('change input undo redo', (e) => {
     onChanged(e, editor);
   });
 
@@ -99,16 +99,16 @@ const initEditor = () => {
   let setting = {
     ...props.setting,
     selector: '#' + state.id,
-    setup: editor => {
+    setup: (editor) => {
       if (props.setup) props.setup(editor);
       editor.on('init', () => onInited(editor));
-    }
+    },
   };
 
   // custom_images_upload true
   if (props.setting.custom_images_upload) {
     setting.images_upload_handler = (...arg) => {
-      imageUploadHandler.apply(null, [props.setting || {}, ...arg]);
+      return imageUploadHandler.apply(null, [props.setting, ...arg]);
     };
   }
 
@@ -131,7 +131,7 @@ watch(
 
 watch(
   () => props.disabled,
-  val => {
+  (val) => {
     if (!state.editor || !state.editor.initialized) return;
     setModeDisabled(state.editor, val);
   }
@@ -139,7 +139,7 @@ watch(
 
 defineExpose({
   id: state.id,
-  editor: state.editor
+  editor: state.editor,
 });
 
 onMounted(() => {
@@ -150,7 +150,7 @@ onMounted(() => {
 
   const scriptSrc =
     props.scriptSrc ??
-    'https://cdn.bootcdn.net/ajax/libs/tinymce/5.8.2/tinymce.min.js';
+    'https://cdn.bootcdn.net/ajax/libs/tinymce/6.1.2/tinymce.min.js';
   scriptLoader.load(scriptSrc, initEditor);
 });
 

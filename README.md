@@ -1,10 +1,10 @@
 # 使用指南
 
-vue3-tinymce 是基于 `vue@3.x` + `tinymce@5.8.x` 封装的富文本编辑器。
+`vue3-tinymce` v2.x 版本是基于 `vue@3.x` + `tinymce@6.1.2` 封装的富文本编辑器。
 
 [![visitors](https://visitor-badge.laobi.icu/badge?page_id=jsdawn.vue3-tinymce)](https://gitee.com/jsdawn/vue3-tinymce)
 [![npm](https://img.shields.io/npm/dt/@jsdawn/vue3-tinymce?label=vue3-tinymce&logo=npm)](https://www.npmjs.com/package/@jsdawn/vue3-tinymce)
-[![tinymce](https://img.shields.io/badge/tinymce-%5E5.8.2-blue)](https://www.tiny.cloud/docs/)
+[![tinymce](https://img.shields.io/badge/tinymce-%5E6.1.2-blue)](https://www.tiny.cloud/docs/tinymce/6/)
 
 ## 为什么
 
@@ -18,7 +18,7 @@ vue3-tinymce 是基于 `vue@3.x` + `tinymce@5.8.x` 封装的富文本编辑器�
 
 ### 开箱即用
 
-组件内置按需加载 `tinymce@5.8.2` 版本 cdn 资源，无需另外引入。使用 `v-if` 在必要时渲染组件。
+组件内置按需加载 `tinymce@6.1.2` 版本 cdn 资源，无需另外引入。使用 `v-if` 在必要时渲染组件。
 
 属性 `script-src` 可自定义 tinymce 静态资源。支持绝对路径和网络地址。
 
@@ -45,7 +45,7 @@ vue3-tinymce 是基于 `vue@3.x` + `tinymce@5.8.x` 封装的富文本编辑器�
 
 ### 获取组件
 
-前往 [Vue3Tinymce 仓库](https://gitee.com/jsdawn/vue3-tinymce.git) 获取 `packages/Vue3Tinymce` 组件文件，Copy 到自己项目中使用。setting 选项配置参照 [tinymce 官方文档](https://www.tiny.cloud/docs/)
+前往 [Vue3Tinymce 仓库](https://gitee.com/jsdawn/vue3-tinymce.git) 获取 `packages/Vue3Tinymce` 组件文件，Copy 到自己项目中使用。setting 选项配置参照 [tinymce 官方文档](https://www.tiny.cloud/docs/tinymce/6/)
 
 这里也提供 NPM 引入：`npm install @jsdawn/vue3-tinymce`，然后在 vue 中引入
 
@@ -77,14 +77,14 @@ const state = reactive({
 
 ## 组件属性
 
-| 名称         | 类型       | 描述                                                                                          |
-| ------------ | ---------- | --------------------------------------------------------------------------------------------- |
-| `modelValue` | `String`   | 绑定值/内容，建议以 `v-model` 的形式使用                                                      |
-| `script-src` | `String`   | 自定义 `tinymce` 静态资源，支持绝对路径和网络地址。内置按需加载 `tinymce@5.8.2`               |
-| `setting`    | `Object`   | 设置项，延用官方 [tinymce 设置](https://www.tiny.cloud/docs/configure/integration-and-setup/) |
-| `setup`      | `Function` | 编辑器设置时的回调，回调参数 editor 实例，在此将编辑器事件添加到 TinyMCE 中                   |
-| `@change`    | `Function` | 编辑器监听到 `change input undo redo` 时触发，回调参数为编辑器 content                        |
-| `@init`      | `Function` | 编辑器初始化完成后触发，回调参数 `editor` 实例                                                |
+| 名称         | 类型       | 描述                                                                                             |
+| ------------ | ---------- | ------------------------------------------------------------------------------------------------ |
+| `modelValue` | `String`   | 绑定值/内容，建议以 `v-model` 的形式使用                                                         |
+| `script-src` | `String`   | 自定义 `tinymce` 静态资源，支持绝对路径和网络地址。内置按需加载 `tinymce@6.1.2`                  |
+| `setting`    | `Object`   | 设置项，延用官方 [tinymce 设置](https://www.tiny.cloud/docs/tinymce/6/editor-important-options/) |
+| `setup`      | `Function` | 编辑器设置时的回调，回调参数 editor 实例，在此将编辑器事件添加到 TinyMCE 中                      |
+| `@change`    | `Function` | 编辑器监听到 `change input undo redo` 时触发，回调参数为编辑器 content                           |
+| `@init`      | `Function` | 编辑器初始化完成后触发，回调参数 `editor` 实例                                                   |
 
 ## 使用示例
 
@@ -99,3 +99,10 @@ _`2020-01-19`_
 **Feature**
 
 - 拓展图片上传：自定义图片上传请求头 `setting.custom_images_upload_header` [#I4OZKC](https://gitee.com/jsdawn/vue3-tinymce/issues/I4OZKC)
+
+
+_`2022-09-23`_
+
+**Feature**
+
+- 升级 `tinymce` 版本，从 v5.8.x 版本升级到 `v6.1.2`。新增 `tinymce@6.1.2` 静态资源包，位置在 `dist/tinymce` 目录
