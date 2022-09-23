@@ -88,7 +88,7 @@ const state = reactive({
 
 ## 使用示例
 
-点击前往 [使用示例](http://jsdawn.gitee.io/vue3-tinymce)
+点击前往 [使用示例](https://jsdawn.gitee.io/note/guide/vue3-tinymce.html)
 
 ## 更新日志
 
