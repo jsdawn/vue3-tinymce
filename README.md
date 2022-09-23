@@ -96,13 +96,14 @@ const state = reactive({
 
 _`2020-01-19`_
 
-**Feature**
+_Feature_
 
 - 拓展图片上传：自定义图片上传请求头 `setting.custom_images_upload_header` [#I4OZKC](https://gitee.com/jsdawn/vue3-tinymce/issues/I4OZKC)
 
+### v2.0.2
 
 _`2022-09-23`_
 
-**Feature**
+_Feature_
 
 - 升级 `tinymce` 版本，从 v5.8.x 版本升级到 `v6.1.2`。新增 `tinymce@6.1.2` 静态资源包，位置在 `dist/tinymce` 目录

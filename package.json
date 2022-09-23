@@ -1,6 +1,6 @@
 {
   "name": "@jsdawn/vue3-tinymce",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "tinymce editor Components built on Vue3 and Vite",
   "author": "jsdawn",
   "license": "MIT",
