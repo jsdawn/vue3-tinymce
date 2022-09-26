@@ -6,7 +6,6 @@ specifiers:
   cross-env: ^7.0.3
   sass: ^1.40.1
   sass-loader: ^12.1.0
-  tinymce: 6.1.2
   vite: ^2.5.4
   vue: ^3.2.6
   vue-router: '4'
@@ -22,7 +21,6 @@ devDependencies:
   cross-env: 7.0.3
   sass: 1.55.0
   sass-loader: 12.6.0_sass@1.55.0
-  tinymce: 6.1.2
   vite: 2.9.15_sass@1.55.0
   vuepress: 2.0.0-beta.51_aujz2uxbq4irtufo7ngdvhmb4m
 
@@ -1797,10 +1795,6 @@ packages:
   /supports-preserve-symlinks-flag/1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
-    dev: true
-
-  /tinymce/6.1.2:
-    resolution: {integrity: sha512-tl4KbEKdPzyPTatJkblN2AqzRj9jaRGyATnwaSnsLFGKb4AI6B+4e0Gc8dUDXuqAjgSnHokhzamrQJLbSn4CmQ==}
     dev: true
 
   /to-fast-properties/2.0.0:

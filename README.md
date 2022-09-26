@@ -83,6 +83,7 @@ const state = reactive({
 | `script-src` | `String`   | 自定义 `tinymce` 静态资源，支持绝对路径和网络地址。内置按需加载 `tinymce@6.1.2`                  |
 | `setting`    | `Object`   | 设置项，延用官方 [tinymce 设置](https://www.tiny.cloud/docs/tinymce/6/editor-important-options/) |
 | `setup`      | `Function` | 编辑器设置时的回调，回调参数 editor 实例，在此将编辑器事件添加到 TinyMCE 中                      |
+| `disabled`   | `Boolean`  | 是否禁用编辑器输入操作                                                                           |
 | `@change`    | `Function` | 编辑器监听到 `change input undo redo` 时触发，回调参数为编辑器 content                           |
 | `@init`      | `Function` | 编辑器初始化完成后触发，回调参数 `editor` 实例                                                   |
 
