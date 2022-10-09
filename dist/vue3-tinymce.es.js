@@ -190,7 +190,6 @@ const _sfc_main = /* @__PURE__ */ Object.assign(__default__, {
       emit("change", content);
     };
     const onInited = (editor) => {
-      state.editor = editor;
       setContent(getModelValue(), editor);
       if (props.disabled && editor.mode.get() !== "readonly") {
         setModeDisabled(editor);
@@ -211,9 +210,10 @@ const _sfc_main = /* @__PURE__ */ Object.assign(__default__, {
       }
       let setting = {
         ...props.setting,
-        selector: "#" + state.id,
+        selector: `#${state.id}`,
         content_style: getContentStyle((_a = props.setting) == null ? void 0 : _a.content_style),
         setup: (editor) => {
+          state.editor = editor;
           if (props.setup)
             props.setup(editor);
           editor.on("init", () => onInited(editor));
@@ -266,14 +266,16 @@ const _sfc_main = /* @__PURE__ */ Object.assign(__default__, {
         initEditor();
     });
     onDeactivated(() => {
+      var _a;
       if (!state.editor)
         return;
-      state.editor.remove();
+      (_a = getTinymce()) == null ? void 0 : _a.remove(`#${state.id}`);
     });
     onBeforeUnmount(() => {
+      var _a;
       if (!state.editor)
         return;
-      state.editor.remove();
+      (_a = getTinymce()) == null ? void 0 : _a.remove(`#${state.id}`);
     });
     return (_ctx, _cache) => {
       return openBlock(), createElementBlock(Fragment, null, [

@@ -71,8 +71,6 @@ const onChanged = (e, editor) => {
 };
 
 const onInited = (editor) => {
-  state.editor = editor;
-
   setContent(getModelValue(), editor);
 
   if (props.disabled && editor.mode.get() !== 'readonly') {
@@ -99,9 +97,10 @@ const initEditor = () => {
 
   let setting = {
     ...props.setting,
-    selector: '#' + state.id,
+    selector: `#${state.id}`,
     content_style: getContentStyle(props.setting?.content_style),
     setup: (editor) => {
+      state.editor = editor;
       if (props.setup) props.setup(editor);
       editor.on('init', () => onInited(editor));
     },
@@ -162,11 +161,12 @@ onActivated(() => {
 
 onDeactivated(() => {
   if (!state.editor) return;
-  state.editor.remove();
+  // state.editor.remove();
+  getTinymce()?.remove(`#${state.id}`);
 });
 
 onBeforeUnmount(() => {
   if (!state.editor) return;
-  state.editor.remove();
+  getTinymce()?.remove(`#${state.id}`);
 });
 </script>
