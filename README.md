@@ -1,10 +1,14 @@
 # 使用指南
 
-`vue3-tinymce` v2.x 版本是基于 `vue@3.x` + `tinymce@6.1.2` 封装的富文本编辑器。
+`vue3-tinymce` 是基于 `vue@3.x` + `tinymce@6.1.2` 封装的富文本编辑器。
 
-[![visitors](https://visitor-badge.laobi.icu/badge?page_id=jsdawn.vue3-tinymce)](https://gitee.com/jsdawn/vue3-tinymce)
+[![visitors](https://visitor-badge.laobi.icu/badge?page_id=jsdawn.vue3-tinymce)](https://github.com/jsdawn/vue3-tinymce)
+
 [![npm](https://img.shields.io/npm/dt/@jsdawn/vue3-tinymce?label=vue3-tinymce&logo=npm)](https://www.npmjs.com/package/@jsdawn/vue3-tinymce)
+
 [![tinymce](https://img.shields.io/badge/tinymce-%5E6.1.2-blue)](https://www.tiny.cloud/docs/tinymce/6/)
+
+**详细文档地址：[vue3-tinymce 富文本编辑器](https://www.qscoding.com/guide/vue3-tinymce.html)**
 
 ## 为什么
 
@@ -12,15 +16,17 @@
 
 个人开发一套完美的富文本编辑器难度大且耗时，在挑选插件中发现 tinymce editor 背景和功能都非常强大，并且文档清晰。基于 `tinymce` 封装组件是一个非常好的选择。
 
-该组件清晰易懂，可自行修改为 vue2 版本使用。期待你的 Star <Badge type="tip" text="+1" vertical="top" /> ，发现问题可以提到 issues 👏
+该组件清晰易懂，可自行修改为 vue2 版本使用。期待你的 Star ，发现问题可以提到 issues 👏
 
 ## 组件特色
 
 ### 开箱即用
 
-组件内置按需加载 `tinymce@6.1.2` 版本 cdn 资源，无需另外引入。使用 `v-if` 在必要时渲染组件。
+组件内置按需加载 `tinymce@6.1.2` 版本 cdn 资源。使用 `v-if` 在必要时渲染组件。
 
-属性 `script-src` 可自定义 tinymce 静态资源。支持绝对路径和网络地址。
+组件包含 `tinymce@6.1.2`, 属性 `script-src` 可自定义 tinymce 静态资源路径。支持绝对路径和网络地址。
+
+稳定使用：建议将 tinymce 资源包放到项目根目录，使用绝对路径。
 
 ### 拓展图片上传
 
@@ -43,17 +49,15 @@
 
 ## 快速上手
 
-### 获取组件
+### NPM 使用
 
-前往 [Vue3Tinymce 仓库](https://gitee.com/jsdawn/vue3-tinymce.git) 获取 `packages/Vue3Tinymce` 组件文件，Copy 到自己项目中使用。setting 选项配置参照 [tinymce 官方文档](https://www.tiny.cloud/docs/tinymce/6/)
+下载组件
 
-这里也提供 NPM 引入：`npm install @jsdawn/vue3-tinymce`，然后在 vue 中引入
-
-```js
-import Vue3Tinymce from '@jsdawn/vue3-tinymce';
+```sh
+npm install @jsdawn/vue3-tinymce
 ```
 
-### 在 vue 中使用
+在 vue3 中使用
 
 ```vue
 <template>
@@ -63,7 +67,7 @@ import Vue3Tinymce from '@jsdawn/vue3-tinymce';
 <script setup>
 import { reactive } from 'vue';
 // 引入组件
-import Vue3Tinymce from 'your-path/Vue3Tinymce';
+import Vue3Tinymce from '@jsdawn/vue3-tinymce';
 
 const state = reactive({
   content: 'hello vue3-tinymce!',
@@ -74,6 +78,25 @@ const state = reactive({
 });
 </script>
 ```
+
+稳定使用静态资源包（推荐）：
+
+在 `node_modules` 目录中找到 `@jsdawn/vue3-tinymce`，将 `@jsdawn/vue3-tinymce/dist/tinymce` 目录复制到项目根目录的 `public/tinymce`，
+然后传入 组件的 `script-src`:
+
+```vue
+<template>
+  <vue3-tinymce
+    v-model="state.content"
+    :setting="state.setting"
+    script-src="/tinymce/tinymce.min.js"
+  />
+</template>
+```
+
+### 自定义组件使用
+
+前往 [Vue3Tinymce 仓库](https://github.com/jsdawn/vue3-tinymce) 获取 `packages/Vue3Tinymce` 组件文件，Copy 到自己项目中使用。setting 选项配置参照 [tinymce 官方文档](https://www.tiny.cloud/docs/tinymce/6/)
 
 ## 组件属性
 
@@ -89,7 +112,7 @@ const state = reactive({
 
 ## 使用示例
 
-点击前往 [使用示例](https://jsdawn.gitee.io/note/guide/vue3-tinymce.html)
+点击前往 [使用示例](https://www.qscoding.com/guide/vue3-tinymce.html)
 
 ## 更新日志
 
@@ -99,7 +122,7 @@ _`2020-01-19`_
 
 _Feature_
 
-- 拓展图片上传：自定义图片上传请求头 `setting.custom_images_upload_header` [#I4OZKC](https://gitee.com/jsdawn/vue3-tinymce/issues/I4OZKC)
+- 拓展图片上传：自定义图片上传请求头 `setting.custom_images_upload_header`
 
 ### v2.0.2
 
