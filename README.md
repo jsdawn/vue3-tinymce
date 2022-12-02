@@ -8,7 +8,7 @@
 
 [![tinymce](https://img.shields.io/badge/tinymce-%5E6.1.2-blue)](https://www.tiny.cloud/docs/tinymce/6/)
 
-**详细文档地址：[vue3-tinymce 富文本编辑器](https://www.qscoding.com/guide/vue3-tinymce.html)**
+**详细文档地址：[vue3-tinymce 富文本编辑器](https://note.qscoding.com/guide/vue3-tinymce.html)**
 
 ## 为什么
 
@@ -112,7 +112,7 @@ const state = reactive({
 
 ## 使用示例
 
-点击前往 [使用示例](https://www.qscoding.com/guide/vue3-tinymce.html)
+点击前往 [使用示例](https://note.qscoding.com/guide/vue3-tinymce.html)
 
 ## 更新日志
 
