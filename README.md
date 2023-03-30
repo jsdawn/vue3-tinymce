@@ -10,6 +10,8 @@
 
 **详细文档地址：[vue3-tinymce 富文本编辑器](https://note.qscoding.com/guide/vue3-tinymce.html)**
 
+vue2版本demo地址：[tinymce-vue2-demo](https://github.com/jsdawn/tinymce-vue2-demo.git)
+
 ## 为什么
 
 在开发管理台项目的时候有富文本编辑的功能需求，封装为组件方便使用。
