@@ -124,7 +124,7 @@ _`2020-01-19`_
 
 _Feature_
 
-- 拓展图片上传：自定义图片上传请求头 `setting.custom_images_upload_header`
+- 拓展图片上传：自定义图片上传请求头 `setting.custom_images_upload_header`。
 
 ### v2.0.2
 
